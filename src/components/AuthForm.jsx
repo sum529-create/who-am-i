@@ -6,15 +6,39 @@ const AuthForm = ({ mode, onSubmit }) => {
   
   // 무엇을 formData 에 넣어야 할까요?
   const [formData, setFormData] = useState({
-		
+		id: '',
+    password: '',
+    nickname: '',
   });
 
   const handleChange = (e) => {
-
+    e.preventDefault();
+    if(mode === "signup"){
+      setFormData(pre => ({
+        ...pre,
+        nickname: e.target.value
+      }))
+    } else {
+      setFormData(pre => ({
+        ...pre,
+        id: e.target.value
+      }))
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handlePwChange = (e) => {
+    e.preventDefault();
+    setFormData(pre => ({
+      ...pre,
+      password: e.target.value
+    }))
+  }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const {id, password} = formData;
+    const payload = mode === "signup" ? formData : {id, password}
+    onSubmit(payload)
   };
 
   // id 입력을 위한 input 만 힌트로 만들어 두었습니다. 참고해서 한번 만들어봅시다! 
@@ -29,7 +53,10 @@ const AuthForm = ({ mode, onSubmit }) => {
         required
       />
       <input
-
+        type="password"
+        name="password"
+        value={formData.password}
+        onChange={handlePwChange}
       />
       {mode === "signup" && (
         <input

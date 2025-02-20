@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="max-w-screen-xl mx-auto px-4">
         <div className="flex justify-center items-center">
           <div className="text-xl font-semibold">
-            @copyright sum529-create
+            <p>© 2024 MBTI Test. All rights reserved.</p>
           </div>
         </div>
       </div>
