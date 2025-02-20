@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     const storeToken = window.localStorage.getItem("token");
     if(storeToken){
-      setToken(JSON.parse(storeToken))
+      setToken(storeToken);
     }
   }, [])
   return (
