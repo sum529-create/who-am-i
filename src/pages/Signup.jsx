@@ -1,19 +1,11 @@
 import AuthForm from "../components/AuthForm";
-import { register } from "../api/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import useRegister from "../hooks/useRegister";
 
 const Signup = () => {
-  const navigate = useNavigate();
-
-  // 완성된 로직들이 아니에요! 참고만 하세요!
+  const {mutate} = useRegister();
   const handleSignup = async (formData) => {
-    try {
-      await register(formData);
-      
-    } catch (error) {
-      console.error(error);      
-      return alert("회원가입에 실패했습니다. 다시 시도해주세요.");
-    }
+    if(formData) mutate(formData)
   };
 
   return (

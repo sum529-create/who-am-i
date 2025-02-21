@@ -12,9 +12,14 @@ const Header = () => {
         </Link>
         <div className="flex justify-center gap-4 items-center cursor-pointer text-[#e7e7e7]">
           {!token? 
-            <Link to="/login">
-              로그인
-            </Link>
+            <>
+              <Link to="/login">
+                로그인
+              </Link>
+              <Link to="/signup">
+                회원가입
+              </Link>
+            </>
           :
             <>
               <Link to="/profile">
