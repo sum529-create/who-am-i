@@ -13,17 +13,11 @@ const AuthForm = ({ mode, onSubmit }) => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    if(mode === "signup"){
-      setFormData(pre => ({
-        ...pre,
-        nickname: e.target.value
-      }))
-    } else {
-      setFormData(pre => ({
-        ...pre,
-        id: e.target.value
-      }))
-    }
+    const {name, value} = e.target
+    setFormData((pre) => ({
+      ...pre,
+      [name]: value
+    }))
   };
 
   const handlePwChange = (e) => {

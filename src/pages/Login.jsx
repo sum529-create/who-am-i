@@ -1,6 +1,5 @@
 import AuthForm from "../components/AuthForm";
 import { Link } from "react-router-dom";
-import useAuthStore from "../zustand/authStore";
 import useLogin from "../hooks/useLogin";
 
 const Login = () => {

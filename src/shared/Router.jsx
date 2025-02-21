@@ -7,6 +7,7 @@ import Signup from "../pages/Signup"
 import TestPage from "../pages/TestPage"
 import TestResultPage from "../pages/TestResultPage"
 import Layout from "../layout/Layout"
+import ProtectedRoute from "../pages/ProtectedRoute"
 
 const Router = () => {
   return (
@@ -15,10 +16,12 @@ const Router = () => {
         <Route element={<Layout/>}>
           <Route path="/" element={<Home/>}/>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/profile" element={<Profile/>}/>
           <Route path="/signup" element={<Signup/>}/>
-          <Route path="/test-page" element={<TestPage/>}/>
-          <Route path="/test-result-page" element={<TestResultPage/>}/>
+          <Route element={<ProtectedRoute/>}>
+            <Route path="/profile" element={<Profile/>}/>
+            <Route path="/test-page" element={<TestPage/>}/>
+            <Route path="/test-result-page" element={<TestResultPage/>}/>
+          </Route>
           <Route path="*" element={<Error/>}/>
         </Route>
       </Routes>
