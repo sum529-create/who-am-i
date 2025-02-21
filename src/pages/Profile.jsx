@@ -1,9 +1,23 @@
 import React, { useState } from "react";
-import { updateProfile } from "../api/auth";
+import { getUserProfile } from "../api/auth";
+import useAuthStore from "../zustand/authStore";
+import { useEffect } from "react";
 
 
-const Profile = ({ user, setUser }) => {
+const Profile = () => {
+  const { user, setUser, token } = useAuthStore();
   const [nickname, setNickname] = useState(user?.nickname || "");
+  
+  useEffect(() => {
+    const fetchUserData = async() => {
+      const res = await getUserProfile(token)
+      setUser(res)
+      setNickname(res.nickname)
+    }
+    if(token){
+      fetchUserData();
+    }
+  }, [token])
 
   const handleNicknameChange = (e) => {
     setNickname(e.target.value);
@@ -23,7 +37,7 @@ const Profile = ({ user, setUser }) => {
             <label>
               닉네임
             </label>
-            <input onChange={handleNicknameChange} />
+            <input value={nickname} name="nickname" onChange={handleNicknameChange} />
           </div>
           <button type="submit">
             프로필 업데이트
