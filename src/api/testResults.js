@@ -6,7 +6,7 @@ export const getTestResults = async () => {
 };
 
 export const createTestResult = async (resultData) => {
-  const response = await jsonInstance.post(resultData)
+  const response = await jsonInstance.post('/',resultData)
   return response.data;
 };
 
