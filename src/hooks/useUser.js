@@ -3,12 +3,19 @@ import { getUserProfile } from "../api/auth";
 import useAuthStore from "../zustand/authStore";
 
 const useUser = () => {
-  const {token} = useAuthStore();
+  const {token, setUser} = useAuthStore();
   
   return (
     useQuery({
       queryKey:['user'],
       queryFn: () => getUserProfile(token),
+      onSuccess: (data) => {
+        setUser(data)
+      },
+      onError: (error) => {
+        console.error("데이터 가져오기 실패!", error);
+      },
+      staleTime: 1000 * 60 * 10,
       enabled: !!token
     })
   )

@@ -2,12 +2,10 @@ import { useState } from "react";
 import useAuthStore from "../zustand/authStore";
 import { useEffect } from "react";
 import useUpdateProfile from "../hooks/useUpdateProfile";
-import useUser from "../hooks/useUser";
-
 
 const Profile = () => {
   const { token } = useAuthStore();
-  const {data:user, refetch} = useUser();
+  const {user} = useAuthStore()
   const [nickname, setNickname] = useState(user?.nickname || "")
   const [imgFile, setImgFile] = useState(user?.avatar || null);
   
@@ -42,9 +40,7 @@ const Profile = () => {
     if(imgFile) formData.append("avatar", imgFile)
     if(nickname) formData.append("nickname", nickname)
     
-    if(formData) mutate({formData, token}, {
-      onSuccess: () => refetch()
-    })
+    if(formData) mutate({formData, token})
   };
 
   return (
