@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+import useAuthStore from '../zustand/authStore';
 import authInstance from './authInstance';
 
 export const register = async (userData) => {
@@ -21,6 +23,7 @@ export const login = async (userData) => {
 };
 
 export const getUserProfile = async (token) => {
+  const {logout} = useAuthStore.getState();
   try {
     const response = await authInstance.get("/user",  {
       headers: {
@@ -30,7 +33,13 @@ export const getUserProfile = async (token) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Failed to get user profile");
+    if(error.response.data.message.includes("토큰")){
+      toast.error('세션이 만료되었습니다. 다시 로그인해주세요!')
+      logout()
+    } else {
+      toast.error('프로필 정보를 불러오지 못했습니다.');
+    }
+    console.error("Failed to get user profile", error);
     throw error
   }
 };

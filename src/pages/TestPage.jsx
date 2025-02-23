@@ -4,22 +4,18 @@ import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
 import { useNavigate } from "react-router-dom";
 import useCreateTest from "../hooks/useCreateTest";
 import useAuthStore from "../zustand/authStore";
-import useUser from "../hooks/useUser";
 
 const TestPage = () => {
   const navigate = useNavigate();
   const [result, setResult] = useState(null);
   const {mutate} = useCreateTest()
-  const {user:storeUser} = useAuthStore();
-  const {data:userData} = useUser();
-  const user = storeUser || userData;
+  const {user} = useAuthStore()
   
   const handleTestSubmit = async (answers) => {
-    console.log(answers);
-    
     const mbtiResult = calculateMBTI(answers);
+
     const testResultData = {
-      userId : user.userId,
+      userId : user.id,
       nickname: user.nickname,
       avatar: user.avatar,
       createdAt: new Date().toLocaleString(),
