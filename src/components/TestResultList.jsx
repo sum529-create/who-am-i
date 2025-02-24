@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query"
 import { getTestResults } from "../api/testResults"
 import TestResultItem from "./TestResultItem"
 import useAuthStore from "../zustand/authStore"
+import Loading from "./common/Loading";
+import Error from "./common/Error";
 
 const TestResultList = () => {
   const {data:testResultList, isLoading, isError, error} = useQuery({
@@ -11,15 +13,11 @@ const TestResultList = () => {
   const {user} = useAuthStore();
   
   if(isLoading) return (
-    <div className="w-full flex justify-center items-center min-h-[200px]">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-    </div>
+    <Loading/>
   );
   
   if(isError) return (
-    <div className="w-full text-center text-red-600 py-8">
-      Error: {error.message}
-    </div>
+    <Error message={error.message}/>
   );
   
   return (

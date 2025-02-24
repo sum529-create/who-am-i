@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "../pages/Home"
-import Error from "../pages/Error"
+import ErrorPage from "../pages/ErrorPage"
 import Login from "../pages/Login"
 import Profile from "../pages/Profile"
 import Signup from "../pages/Signup"
@@ -23,7 +23,7 @@ const Router = () => {
             <Route path="/test-page" element={<TestPage/>}/>
             <Route path="/test-result-page" element={<TestResultPage/>}/>
           </Route>
-          <Route path="*" element={<Error/>}/>
+          <Route path="*" element={<ErrorPage/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
