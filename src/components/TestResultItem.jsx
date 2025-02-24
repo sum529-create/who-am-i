@@ -41,6 +41,8 @@ const TestResultItem = ({data, user}) => {
       }
     });
   }
+  console.log(user);
+  
 
 return (
     <li className="flex flex-col h-full rounded-none sm:rounded-xl bg-white shadow-lg transition-all duration-200 hover:shadow-xl">
@@ -88,7 +90,7 @@ return (
       </div>
 
       {/* Actions Section */}
-      {user.id === data.userId && (
+      {user.userId === data.userId && (
         <div className="p-3 sm:p-4 border-t border-gray-100">
           <div className="flex justify-end gap-2">
             <Button onClick={toggleTestResultVisibility}>
