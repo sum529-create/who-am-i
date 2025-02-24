@@ -10,9 +10,14 @@
   --mint: #7FBEAC;
   --mint-dark: #5A9C8F;
 
+  /* 텍스트 컬러 별도 정의 */
+  --text-title: #2A2A2A;     
+  --text-body: #4A4A4A;      
+  --text-secondary: #6B7280; 
+
   /* 기능적 변수 */
   --bg-primary: var(--coral-light);
-  --text-primary: var(--coral);
+  --text-primary: var(--text-title);
   --button-primary: var(--coral);
   --button-hover: var(--coral-dark);
 

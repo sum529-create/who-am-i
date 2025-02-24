@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import useAuthStore from "../zustand/authStore";
+import Title from "../components/common/Title";
 
 const Home = () => {
   const {token} = useAuthStore()
@@ -9,10 +10,10 @@ const Home = () => {
                     shadow-[var(--card-shadow)]
                     hover:shadow-[var(--card-shadow-hover)]
                     transition-all duration-[var(--transition-normal)]">
-        <h1 className="text-[var(--title-large)] font-bold text-center mb-6 text-[var(--text-primary)]">
+        <Title>
           MBTI 테스트
-        </h1>
-        <p className="text-[var(--text-large)] text-gray-600 text-center mb-10">
+        </Title>
+        <p className="text-large text-gray-600 text-center mb-10">
           당신의 특별한 성격 유형을 찾아보세요
         </p>
         {!token ? (

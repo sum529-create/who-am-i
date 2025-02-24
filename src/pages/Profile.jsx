@@ -2,6 +2,7 @@ import { useState } from "react";
 import useAuthStore from "../zustand/authStore";
 import { useEffect } from "react";
 import useUpdateProfile from "../hooks/useUpdateProfile";
+import Title from "../components/common/Title";
 
 const Profile = () => {
   const { token } = useAuthStore();
@@ -44,28 +45,48 @@ const Profile = () => {
   };
 
   return (
-    <div>
-      <div>
-        <h1>프로필 수정</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
-            {
-              typeof imgFile === "object"
-              ? <div className="h-[200px] w-[200px] bg-slate-400 flex text-center justify-center items-center">이미지 수정중</div>
-              : <img src={imgFile} alt="profile-img" />
-            }
+    <div className="flex-1 bg-[var(--bg-primary)] flex flex-col items-center justify-center p-[var(--gap-lg)]">
+      <div className="max-w-md w-full bg-white rounded-2xl p-10 shadow-[var(--card-shadow)]">
+        <Title>
+          프로필 수정
+        </Title>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="flex flex-col items-center mb-8">
+            {typeof imgFile === "object" ? (
+              <div className="h-[200px] w-[200px] bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
+                이미지 수정중
+              </div>
+            ) : (
+              <img src={imgFile} alt="profile-img" className="h-[200px] w-[200px] rounded-full object-cover" />
+            )}
           </div>
-          <div>
-            <label>이미지</label>
-            <input type="file" name="avatar" accept="image/*" onChange={e => handleProfileImage(e)} />
+          <div className="space-y-2">
+            <label className="block text-gray-700 font-medium">이미지</label>
+            <input 
+              type="file" 
+              name="avatar" 
+              accept="image/*" 
+              onChange={handleProfileImage}
+              className="w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl
+                      file:border-0 file:bg-[var(--button-primary)] file:text-white"
+            />
           </div>
-          <div>
-            <label>
-              닉네임
-            </label>
-            <input value={nickname} name="nickname" onChange={handleNicknameChange} />
+          <div className="space-y-2">
+            <label className="block text-gray-700 font-medium">닉네임</label>
+            <input 
+              value={nickname} 
+              name="nickname" 
+              onChange={handleNicknameChange}
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl 
+                      focus:ring-2 focus:ring-[var(--text-primary)] focus:border-transparent"
+            />
           </div>
-          <button type="submit">
+          <button 
+            type="submit"
+            className="w-full py-4 bg-[var(--button-primary)] text-white rounded-xl 
+                    font-medium hover:bg-[var(--button-hover)] transition-all 
+                    duration-[var(--transition-normal)] mt-8"
+          >
             프로필 업데이트
           </button>
         </form>
