@@ -19,6 +19,7 @@ const useLogin = () => {
             nickname: data.nickname,
             avatar: data.avatar
           })
+          queryClient.invalidateQueries(['user'])
           queryClient.setDefaultOptions({
             queries: {
               staleTime: 3600 * 1000

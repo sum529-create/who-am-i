@@ -12,10 +12,11 @@ const TestResultList = () => {
   
   if(isLoading) return <div>Loading...</div>
   if(isError) return <div>Error {error.message}</div>
-
+  
   return (
     <ul className="flex gap-4 flex-col break-all">
-      {testResultList?.map(e => {
+      {testResultList?.filter(e => e.visibility === true || (e.visibility === false && e.userId === user.userId))
+      .map(e => {
         return(
           <TestResultItem key={e.id} data={e} user={user}/>
         )
