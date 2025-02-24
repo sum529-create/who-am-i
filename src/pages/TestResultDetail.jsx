@@ -4,12 +4,13 @@ import { useQuery } from "@tanstack/react-query";
 import { getTestResultById } from "../api/testResults";
 import Loading from "../components/common/Loading";
 import Error from "../components/common/Error";
+import { QUERY_KEYS } from "../constants/queryKeys";
 
 const TestResultDetail = () => {
   const {resultId} = useParams();
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: ['testResultDetail', resultId],
+    queryKey: QUERY_KEYS.TEST_RESULT_DETAIL(resultId),
     queryFn: () => getTestResultById(resultId) 
   });
   

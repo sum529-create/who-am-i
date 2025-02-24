@@ -5,6 +5,7 @@ import useUpdateProfile from "../hooks/useUpdateProfile";
 import Title from "../components/common/Title";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
+import { QUERY_KEYS } from "../constants/queryKeys";
 
 const Profile = () => {
   const { token, user, setUser } = useAuthStore();
@@ -55,7 +56,7 @@ const Profile = () => {
       if(fileInputRef.current){
         fileInputRef.current.value = ""
       }
-        queryClient.invalidateQueries({queryKey:['user']})
+        queryClient.invalidateQueries({queryKey:QUERY_KEYS.USER})
       }
     })
   };
