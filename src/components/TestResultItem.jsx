@@ -1,9 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import Button from "./common/Button"
 import { deleteTestResult, updateTestResultVisibility } from "../api/testResults"
+import { useState } from "react";
+import ShareModal from "./modal/ShareModal";
+import { useNavigate } from "react-router-dom";
 
 const TestResultItem = ({data, user}) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
   const { mutate:deleteMutate } = useMutation({
     mutationFn: deleteTestResult,
     onSuccess: () => {
@@ -26,7 +31,9 @@ const TestResultItem = ({data, user}) => {
     }
   })
 
-  const handleDeleteTestResult = () => {
+  const handleDeleteTestResult = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
     deleteMutate(data.id, {
       onSuccess: () => {
         queryClient.invalidateQueries({queryKey: ['testResult']})
@@ -34,23 +41,29 @@ const TestResultItem = ({data, user}) => {
     });
   }
 
-  const toggleTestResultVisibility = () => {
+  const toggleTestResultVisibility = (e) => {
+    e.preventDefault()
+    e.stopPropagation();
     updateMutate({id: data.id, visibility:!data.visibility}, {
       onSuccess: () => {
         queryClient.invalidateQueries({queryKey: ['testResult']})
       }
     });
   }
-  console.log(user);
+
+  const moveToPage = (e, pageNm) => {
+    e.stopPropagation();
+    navigate(pageNm)
+  }
   
 
 return (
-    <li className="flex flex-col h-full rounded-none sm:rounded-xl bg-white shadow-lg transition-all duration-200 hover:shadow-xl">
+    <li onClick={(e) => moveToPage(e, `/test-result-page/${data.id}`)} className="flex cursor-pointer flex-col h-full rounded-none sm:rounded-xl bg-white shadow-lg transition-all duration-200 hover:shadow-xl">
       {/* Header Section */}
       <div className="p-3 sm:p-4 border-b border-gray-100">
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-200 rounded-full overflow-hidden flex-shrink-0">
+            <div onClick={e => moveToPage(e, '/profile')} className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-200 rounded-full overflow-hidden flex-shrink-0">
               {data?.avatar && (
                 <img 
                   src={data.avatar} 
@@ -92,13 +105,28 @@ return (
       {/* Actions Section */}
       {user.userId === data.userId && (
         <div className="p-3 sm:p-4 border-t border-gray-100">
-          <div className="flex justify-end gap-2">
-            <Button onClick={toggleTestResultVisibility}>
-              {data.visibility ? '비공개로 전환' : '공개로 전환'}
-            </Button>
-            <Button onClick={handleDeleteTestResult} variant="danger">
-              삭제
-            </Button>
+          <div className="flex justify-between gap-2">
+            <button 
+              className="p-2 text-gray-500 hover:text-gray-700 rounded-full hover:bg-gray-100"
+              onClick={() => setIsOpen(true)}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+              </svg>
+            </button>
+            <ShareModal
+              isOpen={isOpen}
+              onClose={() => setIsOpen(false)}
+              shareUrl={`https://your-domain.com/results/${data.id}`}
+            />
+            <div className="flex gap-2">
+              <Button onClick={e => toggleTestResultVisibility(e)}>
+                {data.visibility ? '비공개로 전환' : '공개로 전환'}
+              </Button>
+              <Button onClick={e => handleDeleteTestResult(e)} variant="danger">
+                삭제
+              </Button>
+            </div>
           </div>
         </div>
       )}

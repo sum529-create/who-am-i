@@ -5,6 +5,11 @@ export const getTestResults = async () => {
   return response.data;
 };
 
+export const getTestResultById = async (id) => {
+  const response = await jsonInstance.get(`/${id}`);
+  return response.data;
+};
+
 export const createTestResult = async (resultData) => {
   const response = await jsonInstance.post('/',resultData)
   return response.data;
