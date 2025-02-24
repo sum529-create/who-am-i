@@ -15,7 +15,7 @@ export const deleteTestResult = async (id) => {
   return response.data
 };
 
-export const updateTestResultVisibility = async (id, visibility) => {
-  const response = await jsonInstance.patch(`/${id}`, visibility);
+export const updateTestResultVisibility = async ({id, visibility}) => {
+  const response = await jsonInstance.patch(`/${id}`, {visibility});
   return response.data
 };
