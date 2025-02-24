@@ -10,6 +10,9 @@ function App() {
     if(storeToken){
       setToken(storeToken);
     }
+    if(window.Kakao){
+      window.Kakao.init(import.meta.env.VITE_APP_KAKAO_API_KEY)
+    }
   }, [])
   return (
     <>
