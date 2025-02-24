@@ -16,7 +16,7 @@
       "nickname": "test2",
       "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/25-02-21/2435e021-85fb-430d-96e0-c93e84c958db.jpg",
       "createdAt": "2025. 2. 24. 오전 1:01:09",
-      "visibility": false,
+      "visibility": true,
       "description": "ESTP: 스릴을 즐기는 모험가! ESTP는 세상에서 재미있는 것을 찾고, 무엇이든 도전해보는 모험가입니다. 이들은 생각보다는 행동이 먼저인 사람들로, '해보지 않고는 모른다'라는 마인드를 가지고 있어요. 가끔은 너무 빨리 결정을 내려서 '아, 이거 왜 했지?'라고 후회할 때도 있긴 하지만, 그들은 이미 새로운 모험을 찾고 있을 거예요. 이들과 함께라면 지루할 틈이 없어요.",
       "mbtiResult": "ESTP"
     },
