@@ -17,15 +17,15 @@ const Layout = () => {
   },[userData])
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
       <Header/>
-      <main className="flex flex-col bg-gray-100 items-center justify-center w-full min-h-screen box-border animate-fadeIn">
-        <div className="w-full flex justify-center max-w-screen-xl relative mx-auto p-8 ">
+      <main className="flex-1 bg-gray-100 flex flex-col">
+        <div className="flex-1 w-full max-w-screen-xl mx-auto p-4 sm:p-8">
           <Outlet context={currentUser}/>
         </div>
       </main>
       <Footer/>
-    </>
+    </div>
   )
 }
 
