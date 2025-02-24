@@ -1,6 +1,7 @@
 import AuthForm from "../components/AuthForm";
 import { Link } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
+import Title from "../components/common/Title";
 
 const Login = () => {
   const {mutate} = useLogin();
@@ -14,9 +15,9 @@ const Login = () => {
     <div className="flex-1 bg-[var(--bg-primary)] flex flex-col items-center justify-center p-[var(--gap-lg)]">
       <div className="max-w-md w-full bg-white rounded-2xl p-10
                     shadow-[var(--card-shadow)]">
-        <h1 className="text-[var(--title-large)] font-bold text-center mb-8 text-[var(--text-primary)]">
+        <Title>
           로그인
-        </h1>
+        </Title>
         <AuthForm mode="login" onSubmit={handleLogin} />
         <div className="text-center mt-6">
           <p className="text-gray-600">

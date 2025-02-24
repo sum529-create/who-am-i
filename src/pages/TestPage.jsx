@@ -45,9 +45,9 @@ const TestPage = () => {
           </>
         ) : (
           <>
-            <h1 className="text-[var(--title-large)] font-bold text-center mb-6 text-[var(--text-primary)]">
+            <Title>
               테스트 결과: {result}
-            </h1>
+            </Title>
             <p className="text-large text-gray-700 mb-8">
               {mbtiDescriptions[result] || "해당 성격 유형에 대한 설명이 없습니다."}
             </p>
