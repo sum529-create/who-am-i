@@ -71,7 +71,7 @@ const TestForm = ({onSubmit}) => {
             disabled={progress !== questions.length}
             className={`w-full py-3 sm:py-4 px-4 sm:px-6 rounded-lg font-semibold transition-all ${
               progress === questions.length
-                ? "bg-blue-600 text-white hover:bg-blue-700"
+                ? "bg-[var(--button-primary)] text-white hover:bg-[var(--button-hover)]"
                 : "bg-gray-300 text-gray-500 cursor-not-allowed"
             }`}
           >

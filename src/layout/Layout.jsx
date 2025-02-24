@@ -12,8 +12,6 @@ const Layout = () => {
 
   useEffect(() => {
     if(userData && !storeUser){
-      console.log(userData);
-      
       setUser({
         userId: userData.id,
         nickname: userData.nickname,

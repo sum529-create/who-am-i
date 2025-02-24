@@ -8,6 +8,7 @@ import TestPage from "../pages/TestPage"
 import TestResultPage from "../pages/TestResultPage"
 import Layout from "../layout/Layout"
 import AuthRoute from "../pages/AuthRoute"
+import TestResultDetail from "../pages/TestResultDetail"
 
 const Router = () => {
   return (
@@ -21,8 +22,9 @@ const Router = () => {
           <Route element={<AuthRoute isAuthRequired={true} redirectTo={"/login"}/>}>
             <Route path="/profile" element={<Profile/>}/>
             <Route path="/test-page" element={<TestPage/>}/>
-            <Route path="/test-result-page" element={<TestResultPage/>}/>
+            <Route path="/test-result-page"element={<TestResultPage/>}/>
           </Route>
+          <Route path="/test-result-page/:resultId" element={<TestResultDetail/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Route>
       </Routes>
