@@ -4,6 +4,7 @@ import { deleteTestResult, updateTestResultVisibility } from "../api/testResults
 import { useState } from "react";
 import ShareModal from "./modal/ShareModal";
 import { useNavigate } from "react-router-dom";
+import { QUERY_KEYS } from "../constants/queryKeys";
 
 const TestResultItem = ({data, user}) => {
   const queryClient = useQueryClient();
@@ -37,7 +38,7 @@ const TestResultItem = ({data, user}) => {
     e.stopPropagation()
     deleteMutate(data.id, {
       onSuccess: () => {
-        queryClient.invalidateQueries({queryKey: ['testResult']})
+        queryClient.invalidateQueries({queryKey: QUERY_KEYS.TEST_RESULT})
       }
     });
   }
@@ -47,7 +48,7 @@ const TestResultItem = ({data, user}) => {
     e.stopPropagation();
     updateMutate({id: data.id, visibility:!data.visibility}, {
       onSuccess: () => {
-        queryClient.invalidateQueries({queryKey: ['testResult']})
+        queryClient.invalidateQueries({queryKey: QUERY_KEYS.TEST_RESULT})
       }
     });
   }

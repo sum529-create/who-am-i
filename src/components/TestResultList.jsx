@@ -4,10 +4,11 @@ import TestResultItem from "./TestResultItem"
 import useAuthStore from "../zustand/authStore"
 import Loading from "./common/Loading";
 import Error from "./common/Error";
+import { QUERY_KEYS } from "../constants/queryKeys";
 
 const TestResultList = () => {
   const {data:testResultList, isLoading, isError, error} = useQuery({
-    queryKey: ['testResult'],
+    queryKey: QUERY_KEYS.TEST_RESULT,
     queryFn: getTestResults,
   })
   const {user} = useAuthStore();
