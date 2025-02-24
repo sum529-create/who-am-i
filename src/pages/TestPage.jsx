@@ -4,6 +4,7 @@ import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
 import { useNavigate } from "react-router-dom";
 import useCreateTest from "../hooks/useCreateTest";
 import useAuthStore from "../zustand/authStore";
+import Title from "../components/common/Title";
 
 const TestPage = () => {
   const navigate = useNavigate();
@@ -33,27 +34,28 @@ const TestPage = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center bg-white">
-      <div className="bg-white rounded-lg p-8 max-w-lg w-full h-full overflow-y-auto">
+    <div className="flex-1 bg-[var(--bg-primary)] flex flex-col items-center justify-center p-[var(--gap-lg)]">
+      <div className="max-w-2xl w-full bg-white rounded-2xl p-10 shadow-[var(--card-shadow)]">
         {!result ? (
           <>
-            <h1 className="text-3xl font-bold text-primary-color mb-6">
+            <Title>
               MBTI 테스트
-            </h1>
+            </Title>
             <TestForm onSubmit={handleTestSubmit} />
           </>
         ) : (
           <>
-            <h1 className="text-3xl font-bold text-primary-color mb-6">
+            <h1 className="text-[var(--title-large)] font-bold text-center mb-6 text-[var(--text-primary)]">
               테스트 결과: {result}
             </h1>
-            <p className="text-lg text-gray-700 mb-6">
-              {mbtiDescriptions[result] ||
-                "해당 성격 유형에 대한 설명이 없습니다."}
+            <p className="text-large text-gray-700 mb-8">
+              {mbtiDescriptions[result] || "해당 성격 유형에 대한 설명이 없습니다."}
             </p>
             <button
               onClick={handleNavigateToResults}
-              className="w-full bg-primary-color text-black py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
+              className="w-full py-4 bg-[var(--button-primary)] text-white rounded-xl 
+                      font-medium hover:bg-[var(--button-hover)] transition-all 
+                      duration-[var(--transition-normal)]"
             >
               결과 페이지로 이동하기
             </button>

@@ -1,27 +1,44 @@
 import { Link } from "react-router-dom";
 import useAuthStore from "../zustand/authStore";
+import Title from "../components/common/Title";
 
 const Home = () => {
   const {token} = useAuthStore()
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center flex-1">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-md p-8">
-        <h1 className="text-3xl font-bold text-center mb-6">
-          MBTI 성격 유형 테스트
-        </h1>
-        <p className="text-gray-600 text-center mb-8">
-          나의 MBTI 유형을 알아보세요!
+    <div className="flex-1 bg-[var(--bg-primary)] flex flex-col items-center justify-center p-[var(--gap-lg)]">
+      <div className="max-w-md w-full bg-white rounded-2xl p-10 
+                    shadow-[var(--card-shadow)]
+                    hover:shadow-[var(--card-shadow-hover)]
+                    transition-all duration-[var(--transition-normal)]">
+        <Title>
+          MBTI 테스트
+        </Title>
+        <p className="text-large text-gray-600 text-center mb-10">
+          당신의 특별한 성격 유형을 찾아보세요
         </p>
-        {
-          !token ?
-          <Link to="/login">
-            로그인하기
+        {!token ? (
+          <Link 
+            to="/login"
+            className="block w-full text-center py-4 rounded-xl font-medium
+                     bg-[var(--button-primary)] text-white
+                     hover:bg-[var(--button-hover)]
+                     active:scale-[0.98]
+                     transition-all duration-[var(--transition-normal)]"
+          >
+            시작하기
           </Link>
-          :
-          <Link to="/test-page">
-            테스트하러 가기
+        ) : (
+          <Link 
+            to="/test-page"
+            className="block w-full text-center py-4 rounded-xl font-medium
+                     bg-[var(--button-primary)] text-white
+                     hover:bg-[var(--button-hover)]
+                     active:scale-[0.98]
+                     transition-all duration-[var(--transition-normal)]"
+          >
+            테스트 시작하기
           </Link>
-        }
+        )}
       </div>
     </div>
   );
