@@ -6,7 +6,7 @@ function App() {
   const {setToken} = useAuthStore();
 
   useEffect(() => {
-    const storeToken = window.localStorage.getItem("token");
+    const storeToken = window.localStorage.getItem("accessToken");
     if(storeToken){
       setToken(storeToken);
     }

@@ -12,7 +12,13 @@ const Layout = () => {
 
   useEffect(() => {
     if(userData && !storeUser){
-      setUser(userData)
+      console.log(userData);
+      
+      setUser({
+        userId: userData.id,
+        nickname: userData.nickname,
+        avatar: userData.avatar
+      })
     }
   },[userData])
 

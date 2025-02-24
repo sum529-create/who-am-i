@@ -10,7 +10,11 @@ const useUser = () => {
       queryKey:['user'],
       queryFn: () => getUserProfile(token),
       onSuccess: (data) => {
-        setUser(data)
+        setUser({
+          userId: data.userId,
+          nickname: data.nickname,
+          avatar: data.avatar
+        })
       },
       onError: (error) => {
         console.error("데이터 가져오기 실패!", error);
