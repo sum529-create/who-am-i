@@ -45,6 +45,7 @@ export const getUserProfile = async (token) => {
 };
 
 export const updateProfile = async (formData, token) => {
+  const {logout} = useAuthStore.getState();
   try {
     const response = await authInstance.patch("/profile", formData, {
       headers: {
@@ -54,7 +55,13 @@ export const updateProfile = async (formData, token) => {
     })
     return response.data
   } catch (error) {
-    console.error("Failed to update profile");
+    if(error.response.data.message.includes("토큰")){
+      toast.error('세션이 만료되었습니다. 다시 로그인해주세요!')
+      logout()
+    } else {
+      toast.error('프로필 정보를 업데이트하지 못했습니다.');
+    }
+    console.error("Failed to update profile", error);
     throw error
   }
 };

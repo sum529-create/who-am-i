@@ -3,14 +3,16 @@ import useAuthStore from "../zustand/authStore";
 import { useEffect } from "react";
 import useUpdateProfile from "../hooks/useUpdateProfile";
 import Title from "../components/common/Title";
+import { useQueryClient } from "@tanstack/react-query";
+import { useRef } from "react";
 
 const Profile = () => {
-  const { token } = useAuthStore();
-  const {user} = useAuthStore()
+  const { token, user, setUser } = useAuthStore();
   const [nickname, setNickname] = useState(user?.nickname || "")
   const [imgFile, setImgFile] = useState(user?.avatar || null);
-  
+  const queryClient = useQueryClient();
   const {mutate} = useUpdateProfile();
+  const fileInputRef = useRef(null)
   
   const fetchUserData = async() => {
     setNickname(user.nickname)
@@ -41,7 +43,21 @@ const Profile = () => {
     if(imgFile) formData.append("avatar", imgFile)
     if(nickname) formData.append("nickname", nickname)
     
-    if(formData) mutate({formData, token})
+    if(formData) mutate({formData, token}, {
+      onSuccess: (data) => {
+        setNickname(data.nickname)
+        setImgFile(data.avatar)
+        setUser({
+          userId: data.id,
+          avatar: data.avatar,
+          nickname: data.nickname
+        })
+      if(fileInputRef.current){
+        fileInputRef.current.value = ""
+      }
+        queryClient.invalidateQueries({queryKey:['user']})
+      }
+    })
   };
 
   return (
@@ -66,6 +82,7 @@ const Profile = () => {
               type="file" 
               name="avatar" 
               accept="image/*" 
+              ref={fileInputRef}
               onChange={handleProfileImage}
               className="w-full text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-xl
                       file:border-0 file:bg-[var(--button-primary)] file:text-white"
