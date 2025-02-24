@@ -37,45 +37,53 @@ const AuthForm = ({ mode, onSubmit }) => {
 
   // id 입력을 위한 input 만 힌트로 만들어 두었습니다. 참고해서 한번 만들어봅시다! 
 return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-lg">
-      <div className="space-y-4">
-        <input
-          type="text"
-          name="id"
-          value={formData.id}
-          onChange={handleChange}
-          placeholder="아이디"
-          required
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-        />
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handlePwChange}
-          placeholder="비밀번호"
-          required
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-        />
-        {mode === "signup" && (
-          <input
-            type="text"
-            name="nickname"
-            value={formData.nickname}
-            onChange={handleChange}
-            placeholder="닉네임"
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
-          />
-        )}
-        <button
-          type="submit"
-          className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 mt-6"
-        >
-          {mode === "login" ? "로그인" : "회원가입"}
-        </button>
-      </div>
-    </form>
+    <form onSubmit={handleSubmit} className="w-full space-y-4">
+    <input
+      type="text"
+      name="id"
+      value={formData.id}
+      onChange={handleChange}
+      placeholder="아이디"
+      required
+      className="w-full px-4 py-3 border border-gray-300 rounded-xl 
+                focus:ring-2 focus:ring-[var(--text-primary)] focus:border-transparent 
+                outline-none transition-all"
+    />
+    <input
+      type="password"
+      name="password"
+      value={formData.password}
+      onChange={handlePwChange}
+      placeholder="비밀번호"
+      required
+      className="w-full px-4 py-3 border border-gray-300 rounded-xl 
+                focus:ring-2 focus:ring-[var(--text-primary)] focus:border-transparent 
+                outline-none transition-all"
+    />
+    {mode === "signup" && (
+      <input
+        type="text"
+        name="nickname"
+        value={formData.nickname}
+        onChange={handleChange}
+        placeholder="닉네임"
+        required
+        className="w-full px-4 py-3 border border-gray-300 rounded-xl 
+                  focus:ring-2 focus:ring-[var(--text-primary)] focus:border-transparent 
+                  outline-none transition-all"
+      />
+    )}
+    <button
+      type="submit"
+      className="w-full py-4 bg-[var(--button-primary)] text-white rounded-xl 
+               font-medium hover:bg-[var(--button-hover)] 
+               transition-all duration-[var(--transition-normal)]
+               mt-8"
+    >
+      {mode === "login" ? "로그인" : "회원가입"}
+    </button>
+  </form>
+
   );
 };
 

@@ -1,0 +1,50 @@
+/* src/styles/theme.css */
+:root {
+  /* 메인 브랜드 컬러 */
+  --coral-light: #FFE4E1;
+  --coral: #FF7F69;
+  --coral-dark: #E85D49;
+
+  /* 보조 컬러 */
+  --mint-light: #E0F4F1;
+  --mint: #7FBEAC;
+  --mint-dark: #5A9C8F;
+
+  /* 기능적 변수 */
+  --bg-primary: var(--coral-light);
+  --text-primary: var(--coral);
+  --button-primary: var(--coral);
+  --button-hover: var(--coral-dark);
+
+  /* 공통 간격 */
+  --gap-lg: 2rem;
+  --gap-md: 1rem;
+  --gap-sm: 0.5rem;
+
+  /* 애니메이션 */
+  --transition-normal: 200ms ease-in-out;
+
+  /* 추가: 카드 스타일링용 */
+  --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --card-shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  /* 추가: 타이포그래피 */
+  --title-large: 2.5rem;
+  --text-large: 1.25rem;
+
+  /* 헤더/푸터용 컬러 */
+  --header-bg: var(--coral);
+  --header-text: white;
+  --header-text-hover: var(--coral-light);
+  --header-button-bg: white;
+  --header-button-text: var(--coral);
+  --header-button-hover: var(--coral-light);
+  
+  /* footer 컬러 수정 */
+  --footer-bg: #2A2A2A;
+  --footer-text: #E5E5E5;
+
+  /* 반응형 */
+  --header-height-mobile: 50px;
+  --header-height-desktop: 60px;
+}

@@ -19,8 +19,8 @@ const Layout = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header/>
-      <main className="flex-1 bg-gray-100 flex flex-col">
-        <div className="flex-1 w-full max-w-screen-xl mx-auto p-4 sm:p-8">
+      <main className="flex-1 bg-[var(--bg-primary)] flex flex-col">
+        <div className="flex justify-center items-center flex-1 w-full max-w-screen-xl mx-auto p-4 sm:p-8">
           <Outlet context={currentUser}/>
         </div>
       </main>
