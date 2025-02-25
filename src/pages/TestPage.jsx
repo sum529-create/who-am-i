@@ -15,7 +15,7 @@ const TestPage = () => {
     const mbtiResult = calculateMBTI(answers);
 
     const testResultData = {
-      userId : user.id,
+      userId : user.userId,
       nickname: user.nickname,
       avatar: user.avatar,
       createdAt: new Date().toLocaleString(),
