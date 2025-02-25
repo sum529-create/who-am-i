@@ -1,13 +1,15 @@
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react'
 import { Fragment } from 'react'
+import { toast } from 'react-toastify'
 
 const ShareModal = ({ isOpen, onClose, shareUrl }) => {
   const onTextCopy = () => {
     try {
       window.navigator.clipboard.writeText(shareUrl)
-      alert('텍스트가 클립보드에 복사되었습니다.')
+      toast.success('텍스트가 클립보드에 복사되었습니다.')
     } catch (error) {
       console.error(error);
+      toast.error('텍스트 복사가 실패하였습니다.')
     }
   }
   const sharedFaceBook = () => {
