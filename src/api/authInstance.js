@@ -1,8 +1,8 @@
-import axios from "axios"
+import axios from "axios";
 
 const authInstance = axios.create({
-  baseURL: 'https://www.nbcamp-react-auth.link',
-  timeout: 5000
-})
+  baseURL: import.meta.env.VITE_APP_AUTH_API_URL,
+  timeout: 5000,
+});
 
 export default authInstance;
