@@ -4,12 +4,21 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { login } from "../api/auth";
 import { toast } from "react-toastify";
 
+/**
+ * useLogin
+ * 로그인 처리를 해주는 mutation 관리
+ * @returns {UseMutationResult} - 로그인 처리 뮤테이션 객체
+ */
 const useLogin = () => {
   const navigate = useNavigate();
   const { setUser, setToken } = useAuthStore();
   const queryClient = useQueryClient();
 
   return useMutation({
+    /**
+     * 로그인 처리를 하는 함수
+     * @function
+     */
     mutationFn: login,
     onSuccess: (data) => {
       if (data.success) {

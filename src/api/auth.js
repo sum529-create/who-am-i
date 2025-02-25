@@ -2,6 +2,15 @@ import { toast } from "react-toastify";
 import useAuthStore from "../zustand/authStore";
 import authInstance from "./authInstance";
 
+/**
+ * 사용자 회원가입 요청
+ * @param {Object} userData - 회원가입할 사용자 정보
+ * @param {string} userData.id - 사용자 아이디
+ * @param {string} userData.password - 사용자 비밀번호
+ * @param {string} userData.nickname - 사용자 닉네임
+ * @returns {Promise<Object>} - 회원가입 응답 데이터
+ * @returns {Error} - 회원가입 요청 실패 시 에러 발생
+ */
 export const register = async (userData) => {
   try {
     const response = await authInstance.post("/register", userData);
@@ -12,6 +21,14 @@ export const register = async (userData) => {
   }
 };
 
+/**
+ * 사용자 로그인 요청
+ * @param {Object} userData - 로그인 할 사용자 정보
+ * @param {string} userData.id - 사용자 아이디
+ * @param {string} userData.password - 사용자 비밀번호
+ * @returns {Promise<Object>} - 로그인 응답 데이터
+ * @returns {Error} - 로그인 요청 실패 시 에러 발생
+ */
 export const login = async (userData) => {
   try {
     const response = await authInstance.post("/login", userData);
@@ -22,6 +39,12 @@ export const login = async (userData) => {
   }
 };
 
+/**
+ * 사용자 프로필 데이터 요청
+ * @param {string} token - 사용자 인증 토큰
+ * @returns {Promise<Object>} - 프로필 정보 응답 데이터
+ * @returns {Error} - 프로필 정보 요청 실패 시 에러 발생
+ */
 export const getUserProfile = async (token) => {
   const { logout } = useAuthStore.getState();
   try {
@@ -44,6 +67,13 @@ export const getUserProfile = async (token) => {
   }
 };
 
+/**
+ * 사용자 프로필 업데이트 요청
+ * @param {FormData} formData - 업데이트 할 사용자 프로필 데이터
+ * @param {string} token - 사용자 인증 토큰
+ * @returns {Promise<Object>} - 업데이트 된 사용자의 프로필 데이터
+ * @returns {Error} - 사용자 프로필 응답 실패 시 에러 발생
+ */
 export const updateProfile = async (formData, token) => {
   const { logout } = useAuthStore.getState();
   try {
