@@ -20,15 +20,16 @@ const TestResultList = () => {
   if(isError) return (
     <Error message={error.message}/>
   );
-  
   return (
     <div className="w-full">
       <ul className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {testResultList
-          ?.filter(e => e.visibility === true || (e.visibility === false && e.userId === user.userId))
+        {testResultList.length > 0 ? 
+          testResultList?.filter(e => e.visibility === true || (e.visibility === false && e.userId === user.userId))
           .map(e => (
             <TestResultItem key={e.id} data={e} user={user}/>
-          ))}
+          ))
+          : (<li className="col-[span_3] text-center">업로드 된 테스트가 없습니다.</li>)
+        }
       </ul>
     </div>
   );
