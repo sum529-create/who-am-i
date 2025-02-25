@@ -69,9 +69,9 @@ const Profile = () => {
         </Title>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="flex flex-col items-center mb-8">
-            {typeof imgFile === "object" ? (
+            {!imgFile || typeof imgFile === "object" ? (
               <div className="h-[200px] w-[200px] bg-gray-200 rounded-full flex items-center justify-center text-gray-500">
-                이미지 수정중
+                이미지 {imgFile ? '수정중' : '없음'}
               </div>
             ) : (
               <img src={imgFile} alt="profile-img" className="h-[200px] w-[200px] rounded-full object-cover" />
