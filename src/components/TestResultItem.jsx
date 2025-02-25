@@ -5,6 +5,7 @@ import { useState } from "react";
 import ShareModal from "./modal/ShareModal";
 import { useNavigate } from "react-router-dom";
 import { QUERY_KEYS } from "../constants/queryKeys";
+import { toast } from "react-toastify";
 
 const TestResultItem = ({data, user}) => {
   const queryClient = useQueryClient();
@@ -14,22 +15,22 @@ const TestResultItem = ({data, user}) => {
   const { mutate:deleteMutate } = useMutation({
     mutationFn: deleteTestResult,
     onSuccess: () => {
-      alert('해당 테스트 결과가 삭제되었습니다.')
+      toast.success('해당 테스트 결과가 삭제되었습니다.');
     },
     onError: (error) => {
       console.error("Failed to delete test result: ", error);
-      throw error
+      toast.error('삭제에 실패했습니다.');
     }
   });
 
   const {mutate:updateMutate} = useMutation({
     mutationFn: updateTestResultVisibility,
     onSuccess: () => {
-      alert('해당 테스트 결과의 공개 여부가 변경되었습니다.')
+      toast.success('해당 테스트 결과의 공개 여부가 변경되었습니다.');
     },
     onError: (error) => {
       console.error("Failed to update test result: ", error);
-      throw error
+      toast.error('공개 여부 변경에 실패했습니다.');
     }
   })
 
