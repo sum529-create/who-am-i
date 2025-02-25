@@ -50,7 +50,7 @@ const ShareModal = ({ isOpen, onClose, shareUrl }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"/>
+          <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm"/>
         </TransitionChild>
 
         {/* 모달 */}

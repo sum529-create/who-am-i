@@ -81,7 +81,7 @@ return (
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-[50px]">
             {data.visibility ? (
               <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
                 공개
