@@ -39,7 +39,7 @@ const TestPage = () => {
             <TestForm onSubmit={handleTestSubmit} />
           </>
         ) : (
-          <TestMyResult result={result}/>
+          <TestMyResult noUrl={true} result={result}/>
         )}
       </div>
     </div>

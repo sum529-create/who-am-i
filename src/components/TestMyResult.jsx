@@ -1,8 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { mbtiDescriptions } from "../utils/mbtiCalculator"
 import Title from "./common/Title"
+import ShareButton from "./common/ShareButton";
 
-const TestMyResult = ({result}) => {
+const TestMyResult = ({result, noUrl}) => {
   const navigate = useNavigate();
 
   const handleNavigateToResults = () => {
@@ -17,14 +18,17 @@ const TestMyResult = ({result}) => {
       <p className="text-large text-gray-700 mb-8">
         {mbtiDescriptions[result] || "해당 성격 유형에 대한 설명이 없습니다."}
       </p>
-      <button
-        onClick={handleNavigateToResults}
-        className="w-full py-4 bg-[var(--button-primary)] text-white rounded-xl 
-                font-medium hover:bg-[var(--button-hover)] transition-all 
-                duration-[var(--transition-normal)]"
-      >
-        결과 페이지로 이동하기
-      </button>
+      <div className="flex gap-2">
+        <ShareButton noUrl={noUrl}/>
+        <button
+          onClick={handleNavigateToResults}
+          className="w-full py-4 bg-[var(--button-primary)] text-white rounded-xl 
+                  font-medium hover:bg-[var(--button-hover)] transition-all 
+                  duration-[var(--transition-normal)]"
+        >
+          결과 페이지로 이동하기
+        </button>
+      </div>
     </>
   )
 }
