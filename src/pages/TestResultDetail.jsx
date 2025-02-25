@@ -16,7 +16,7 @@ const TestResultDetail = () => {
   
   if(isLoading) return <Loading/>
 
-  if(isError) return <Error message={error}/>
+  if(isError) return <Error message={error.message}/>
   
   return (
     <div className="flex-1 bg-[var(--bg-primary)] flex flex-col items-center justify-center p-[var(--gap-lg)]">

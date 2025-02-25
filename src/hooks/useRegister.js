@@ -3,9 +3,18 @@ import { register } from "../api/auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+/**
+ * useRegister
+ * 사용자 회원정보의 결과를 생성하는 mutation 관리
+ * @returns {UseMutationResult} - 사용자 회원정보 뮤테이션 객체
+ */
 const useRegister = () => {
   const navigate = useNavigate();
   return useMutation({
+    /**
+     * 사용자 회원가입 요청 함수
+     * @function
+     */
     mutationFn: register,
     onSuccess: (data) => {
       if (data.success) {
